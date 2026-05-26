@@ -1,82 +1,163 @@
 # MA-xss
-A Python-based security tool designed to detect potential Cross-Site Scripting (XSS) vulnerabilities in web applications. The scanner automatically crawls websites, discovers forms, injects common XSS payloads, and analyzes responses to identify possible vulnerabilities.
+# XSS Vulnerability Scanner
 
-Features
-XSS Payload Testing
-Injects commonly used XSS payloads into input fields to detect script injection vulnerabilities.
-Automated Form Detection
-Identifies forms across webpages and tests input fields for potential XSS flaws.
-Website Crawling
-Crawls and explores website links to scan all reachable pages.
-Vulnerability Reporting
-Generates a detailed report containing discovered vulnerabilities, affected URLs, and payloads used during testing.
-Requirements
-Python 3.x
-requests
-beautifulsoup4
+This is a Python-based tool that scans websites for **Cross-Site Scripting (XSS)** vulnerabilities. It identifies potential XSS vulnerabilities by submitting common XSS payloads to forms and analyzing responses.
 
-Install dependencies using:
+## Features
 
+- **XSS Payload Injection:** Uses common XSS payloads to test if input fields are vulnerable to script injection.
+- **Form Scanning:** Automatically detects forms on webpages and tests them for XSS vulnerabilities.
+- **Website Crawling:** Crawls through the links of a given website and scans all reachable pages for XSS vulnerabilities.
+- **Scan Reports:** Generates a detailed report of all discovered vulnerabilities with payloads used.
+
+---
+
+## Requirements
+
+- Python 3.x
+- `requests` library
+- `beautifulsoup4` library
+
+To install the necessary dependencies, run:
+
+```bash
 pip install requests beautifulsoup4
-Installation
+```
 
-Clone the repository:
+---
 
-git clone https://github.com/yourusername/xss-scanner.git
+## Usage
+
+### 1. Clone this repository:
+
+```bash
+git clone https://github.com/AbhishekPrasadkumar/xss-scanner.git
 cd xss-scanner
-Usage
+```
 
-Run the scanner:
+### 2. Run the script:
 
+```bash
 python xss_scanner.py
+```
 
-Enter the target website URL when prompted:
+### 3. Enter the URL of the website you wish to scan when prompted.
 
+Example:
+
+```
 Enter the URL to scan: https://example.com
+```
 
-The tool will:
+### 4. The tool will:
 
-Crawl the target website
-Discover forms and input fields
-Inject XSS payloads
-Analyze responses for vulnerabilities
-Generate a scan report
-Example Output
+- Crawl the target website
+- Scan webpages and detect forms
+- Submit XSS payloads
+- Analyze responses for vulnerabilities
+- Generate a scan report
+
+### 5. The report will be saved as:
+
+```
+xss_scan_report.txt
+```
+
+---
+
+## Example Output
+
+```
 Enter the URL to scan: https://example.com
 
 🔍 Crawling website to find pages...
  - Found page: https://example.com/contact
+ - Found page: https://example.com/search
 
 🔍 Scanning https://example.com/contact (contact) for XSS vulnerabilities...
 
 ✅ Potential XSS vulnerability detected:
-URL: https://example.com/contact
-Payload: <script>alert('XSS')</script>
+   URL     : https://example.com/contact
+   Form    : contact
+   Payload : <script>alert('XSS')</script>
+
+🔍 Scanning https://example.com/search (search) for XSS vulnerabilities...
+
+✅ Potential XSS vulnerability detected:
+   URL     : https://example.com/search
+   Form    : search
+   Payload : <img src=x onerror=alert(1)>
 
 📄 Scan report saved as xss_scan_report.txt
-Report Format
+✅ Scan complete. 2 vulnerabilities found across 2 pages.
+```
 
-The generated report (xss_scan_report.txt) contains:
+---
 
-Vulnerable page or form location
-Target URL
-Successful payload used
-Details of detected vulnerabilities
+## Report Format
+
+The generated report contains a list of found XSS vulnerabilities, including:
+
+- Vulnerability location
+- URL affected
+- Payload used
+- Detection details
 
 Example:
 
+```text
 XSS Vulnerability Scan Report
+Target : https://example.com
+Date   : 2026-05-26
 ==================================================
 
-Vulnerability Location: Contact Form
-URL: https://example.com/contact
-
-Payload:
+Vulnerability Location : Contact Form
+URL                    : https://example.com/contact
+Payload                :
 <script>alert('XSS')</script>
-Disclaimer
 
-This tool is intended for educational purposes and authorized security testing only. Use it only on systems and applications you own or have explicit permission to test. Unauthorized scanning of third-party systems may violate laws or terms of service.
+--------------------------------------------------
 
-Contributing
+Vulnerability Location : Search Form
+URL                    : https://example.com/search
+Payload                :
+<img src=x onerror=alert(1)>
 
-Contributions, suggestions, and improvements are welcome. Feel free to open an issue or submit a pull request.
+--------------------------------------------------
+
+Total Vulnerabilities Found : 2
+Pages Scanned               : 2
+```
+
+---
+
+## Project Structure
+
+```
+xss-scanner/
+│
+├── xss_scanner.py        # Main scanner script
+├── payloads.txt          # XSS payload wordlist (optional override)
+├── xss_scan_report.txt   # Auto-generated scan output
+└── README.md             # This file
+```
+
+---
+
+## Disclaimer
+
+⚠️ This tool is intended for **educational purposes and authorized security testing only**. Use this scanner only on systems that you own or have **explicit written permission** to test.
+
+Unauthorized scanning of systems may violate laws and regulations. The author assumes **no liability** for any misuse of this tool.
+
+---
+
+## Contributing
+
+Feel free to open issues or submit pull requests if you'd like to contribute to this project.
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -m 'Add: your feature'`
+4. Push to your branch: `git push origin feature/your-feature`
+5. Open a Pull Request with a clear description of your changes
