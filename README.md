@@ -1,4 +1,4 @@
-# Ma(xxs)
+# MA-xss
 A Python-based security tool designed to detect potential Cross-Site Scripting (XSS) vulnerabilities in web applications. The scanner automatically crawls websites, discovers forms, injects common XSS payloads, and analyzes responses to identify possible vulnerabilities.
 
 Features
