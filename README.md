@@ -1,5 +1,4 @@
-# MA-xss
-# XSS Vulnerability Scanner
+# MA-xss(XSS Vulnerability Scanner)
 
 This is a Python-based tool that scans websites for **Cross-Site Scripting (XSS)** vulnerabilities. It identifies potential XSS vulnerabilities by submitting common XSS payloads to forms and analyzing responses.
 
